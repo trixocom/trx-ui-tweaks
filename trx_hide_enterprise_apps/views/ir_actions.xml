@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--
+        Sobrescribimos el dominio de la accion Apps para excluir los
+        modulos con licencia OEEL-1 (Odoo Enterprise). Esto saca de la
+        vista tanto los teasers (state=uninstallable) como cualquier
+        otro modulo enterprise que pueda existir en el addons_path.
+
+        Domain polish notation: el '!' consume solo el operando que le
+        sigue, y los operandos restantes se combinan con AND implicito.
+    -->
+    <record id="base.open_module_tree" model="ir.actions.act_window">
+        <field name="domain">['!', ('name', '=like', 'theme_%'), ('license', '!=', 'OEEL-1')]</field>
+    </record>
+
+</odoo>
