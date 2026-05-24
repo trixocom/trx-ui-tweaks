@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--
+        El modulo `website` define una action duplicada de Apps con id
+        `website.action_website_add_features` (id numerico 420 en una DB
+        tipica), y la engancha al menu top-level "Apps" del navbar
+        (`/odoo/apps`). Sobrescribir solo `base.open_module_tree` no
+        alcanza si website esta instalado, porque el navbar principal
+        usa esta otra action.
+
+        Aplicamos exactamente el mismo dominio que en el modulo padre.
+    -->
+    <record id="website.action_website_add_features" model="ir.actions.act_window">
+        <field name="domain">['!', ('name', '=like', 'theme_%'), ('license', '!=', 'OEEL-1')]</field>
+    </record>
+
+</odoo>

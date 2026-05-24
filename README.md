@@ -8,7 +8,13 @@ Pequeños ajustes de UI/UX para instancias Odoo Community administradas por Trix
 
 Oculta del listado de **Apps** (`base.open_module_tree`) todos los módulos con licencia `OEEL-1` (Odoo Enterprise), incluidos los *teasers* que la imagen oficial `odoo:N.0` trae como placeholders de Enterprise (`state=uninstallable`).
 
-Se auto-instala (`auto_install=True`) cuando `base` ya está presente, así que basta con sumarlo al `addons_path` y hacer un update de la DB.
+Se auto-instala (`auto_install=True`) cuando `base` ya está presente.
+
+### `trx_hide_enterprise_apps_website`
+
+Bridge para cuando el módulo `website` está instalado. `website` define **otra action** llamada `Apps` (`website.action_website_add_features`) que el navbar superior usa como ruta `/odoo/apps`; sin este bridge los teasers OEEL-1 vuelven a aparecer en esa vista. Aplica el mismo dominio que el módulo padre.
+
+Se auto-instala cuando `trx_hide_enterprise_apps` y `website` están ambos presentes.
 
 **Compatibilidad**: Odoo 19 Community.
 **Licencia**: LGPL-3.
