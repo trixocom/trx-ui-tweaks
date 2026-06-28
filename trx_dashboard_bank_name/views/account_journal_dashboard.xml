@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2026 Trixocom -->
+<odoo>
+    <record id="account_journal_dashboard_kanban_view_bank_name" model="ir.ui.view">
+        <field name="name">account.journal.dashboard.kanban.bank.name</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
+        <field name="arch" type="xml">
+
+            <!-- Exponemos los campos relacionados al renderer del kanban. -->
+            <xpath expr="//field[@name='bank_account_id']" position="after">
+                <field name="trx_bank_name"/>
+                <field name="trx_bank_acc_number"/>
+            </xpath>
+
+            <!--
+                Título de la card: si el diario tiene banco asociado mostramos
+                el nombre del banco; si no, mantenemos el nombre del diario.
+            -->
+            <xpath expr="//t[@t-name='JournalTop']//a[@name='open_action']/field[@name='name']" position="replace">
+                <t t-if="record.trx_bank_name.raw_value">
+                    <field name="trx_bank_name"/>
+                </t>
+                <t t-else="">
+                    <field name="name"/>
+                </t>
+            </xpath>
+
+            <!--
+                Debajo del título, el número de cuenta. Sólo cuando realmente
+                reemplazamos el título por el nombre del banco, para no
+                duplicar el dato en diarios con cuenta pero sin banco.
+            -->
+            <xpath expr="//t[@t-name='JournalTop']/span[hasclass('align-items-baseline')]" position="after">
+                <div class="text-muted small"
+                     t-if="record.trx_bank_name.raw_value and record.trx_bank_acc_number.raw_value">
+                    <field name="trx_bank_acc_number"/>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
