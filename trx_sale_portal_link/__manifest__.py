@@ -2,7 +2,7 @@
 # Copyright 2026 Trixocom
 {
     "name": "Trixocom — Presupuestos: aprobación y firma online",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.1.1",
     "author": "Trixocom",
     "website": "https://www.trixocom.com",
     "license": "LGPL-3",

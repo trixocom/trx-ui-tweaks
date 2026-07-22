@@ -12,6 +12,7 @@ MAIL_BLOCK = """
 """
 
 _BLOCK_RE = re.compile(r'<div[^>]*trx_portal_sign_link.*?</div>', re.S)
+_BLOCK_ESC_RE = re.compile(r'&lt;div[^&]*?trx_portal_sign_link.*?&lt;/div&gt;', re.S)
 
 
 def _apply_mail_block(env):
@@ -22,6 +23,7 @@ def _apply_mail_block(env):
     for lang_code, _name in env["res.lang"].get_installed():
         tpl = template.with_context(lang=lang_code)
         body = _BLOCK_RE.sub("", tpl.body_html or "")
+        body = _BLOCK_ESC_RE.sub("", body)
         tpl.body_html = body + MAIL_BLOCK
 
 
