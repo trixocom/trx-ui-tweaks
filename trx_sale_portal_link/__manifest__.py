@@ -2,13 +2,13 @@
 # Copyright 2026 Trixocom
 {
     "name": "Trixocom — Presupuestos: aprobación y firma online",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "author": "Trixocom",
     "website": "https://www.trixocom.com",
     "license": "LGPL-3",
     "category": "Sales",
     "summary": (
-        "Agrega en el PDF y en el mail de los presupuestos un link directo "
+        "Agrega en el PDF y en el mail de los presupuestos un boton con link directo "
         "al portal para que el cliente pueda aprobar y firmar online, y "
         "activa la firma online por defecto en todas las compañías."
     ),

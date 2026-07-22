@@ -3,16 +3,15 @@
 <odoo>
 
     <template id="report_saleorder_document_portal_link"
-              name="Presupuesto: link de aprobacion y firma en portal"
+              name="Presupuesto: boton de aprobacion y firma en portal"
               inherit_id="sale.report_saleorder_document">
-        <xpath expr="//div[@t-if='not doc.signature']" position="after">
+        <xpath expr="//p[@id='fiscal_position_remark']" position="after">
             <div t-if="doc.state in ('draft', 'sent')"
                  name="trx_portal_sign_link"
-                 class="mt-3 pt-2">
-                <strong>Aprobación y firma en línea:</strong>
-                puede revisar, aprobar y firmar este presupuesto ingresando a:<br/>
-                <a t-att-href="doc.get_base_url() + doc.get_portal_url()">
-                    <span t-out="doc.get_base_url() + doc.get_portal_url()"/>
+                 class="mt-4 mb-3 text-center">
+                <a t-att-href="doc.get_base_url() + doc.get_portal_url()"
+                   style="display: inline-block; background-color: #4da6ff; color: #ffffff; font-size: 17px; font-weight: bold; padding: 14px 36px; border-radius: 8px; text-decoration: none;">
+                    APROBAR Y FIRMAR ESTE PRESUPUESTO
                 </a>
             </div>
         </xpath>
