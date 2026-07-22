@@ -27,3 +27,13 @@ En el **tablero de Contabilidad** (kanban de `account.journal`), para los diario
 Los nombres de banco provienen de la localización (`l10n_ar_bank` → `res.bank.name`). Los diarios sin banco (efectivo, ventas, compras, etc.) no se modifican.
 
 Hereda `account.account_journal_dashboard_kanban_view` y agrega dos campos *related* (no almacenados) sobre `account.journal`: `trx_bank_name` y `trx_bank_acc_number`. No se auto-instala.
+
+### `trx_sale_portal_link`
+
+En los **presupuestos** (cotizaciones en borrador o enviadas) agrega un link directo al portal para que el cliente pueda **aprobar y firmar online**:
+
+* En el PDF (`sale.report_saleorder_document`): bloque Aprobacion y firma en linea con la URL del portal (incluye access token), insertado despues del bloque de firma/totales.
+* En el mail Ventas: enviar cotizacion (`sale.email_template_edi_sale`): el `post_init_hook` agrega el mismo link al cuerpo, en todos los idiomas instalados (marcador `trx_portal_sign_link`, no se duplica).
+* Activa **Firma online** (`res.company.portal_confirmation_sign`) en todas las companias al instalar.
+
+**Compatibilidad**: Odoo 19 Community. **Licencia**: LGPL-3. **Autor**: Trixocom.

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2026 Trixocom -->
+<odoo>
+
+    <template id="report_saleorder_document_portal_link"
+              name="Presupuesto: link de aprobacion y firma en portal"
+              inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@t-if='not doc.signature']" position="after">
+            <div t-if="doc.state in ('draft', 'sent')"
+                 name="trx_portal_sign_link"
+                 class="mt-3 pt-2">
+                <strong>Aprobación y firma en línea:</strong>
+                puede revisar, aprobar y firmar este presupuesto ingresando a:<br/>
+                <a t-att-href="doc.get_base_url() + doc.get_portal_url()">
+                    <span t-out="doc.get_base_url() + doc.get_portal_url()"/>
+                </a>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
