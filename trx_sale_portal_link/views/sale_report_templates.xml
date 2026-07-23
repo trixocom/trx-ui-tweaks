@@ -5,6 +5,8 @@
     <template id="report_saleorder_document_portal_link"
               name="Presupuesto: boton de aprobacion y firma en portal"
               inherit_id="sale.report_saleorder_document">
+
+        <!-- Boton de aprobacion y firma al final del presupuesto -->
         <xpath expr="//p[@id='fiscal_position_remark']" position="after">
             <div t-if="doc.state in ('draft', 'sent')"
                  name="trx_portal_sign_link"
@@ -15,6 +17,17 @@
                 </a>
             </div>
         </xpath>
+
+        <!-- El PDF estandar solo imprime la nota del termino de pago; si la nota
+             esta vacia, mostramos el nombre del termino para que igual figure
+             (una unica vez) en el presupuesto. -->
+        <xpath expr="//p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="after">
+            <p t-if="doc.payment_term_id and is_html_empty(doc.payment_term_id.note)"
+               name="trx_payment_term_name">
+                <span t-field="doc.payment_term_id.name"/>
+            </p>
+        </xpath>
+
     </template>
 
 </odoo>
